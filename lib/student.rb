@@ -4,4 +4,10 @@ require 'interactive_record.rb'
 
 class Student < InteractiveRecord
 
+   self.column_names.each {|name|attr_accessor name.to_sym}
+   
+   def initialize(options={})
+      options.each {|property,value|self.send("#{property}=",value)}
+   end
+
 end
